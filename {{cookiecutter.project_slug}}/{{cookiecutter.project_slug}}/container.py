@@ -25,8 +25,9 @@ class Container(containers.DeclarativeContainer):
                 as_dev=config.as_dev,
                 version=config.version
             ),
+            providers.ThreadSafeSingleton(http_middleware.BasicAuthMiddleware),
             providers.ThreadSafeSingleton(http_middleware.SessionMiddleware),
-            providers.ThreadSafeSingleton(http_middleware.ErrorMiddleware)
+            providers.ThreadSafeSingleton(http_middleware.ErrorMiddleware),
         ),
         http_routes=providers.List(
             providers.ThreadSafeSingleton(
@@ -37,7 +38,12 @@ class Container(containers.DeclarativeContainer):
     )
 
     http_server = providers.ThreadSafeSingleton(
-        daemon.HttpServer, http_application
+        daemon.HttpServer,
+        application=http_application,
+        host=config.http.host,
+        port=config.http.port,
+        cert=config.http.cert,
+        key=config.http.key
     )
 
     daemon_service = providers.ThreadSafeSingleton(

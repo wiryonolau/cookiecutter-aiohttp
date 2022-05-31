@@ -7,11 +7,19 @@ import asyncio
 from {{ cookiecutter.project_slug }}.abc import AbstractMiddleware
 from {{ cookiecutter.project_slug }}.util import dict_merge
 from {{ cookiecutter.project_slug }}.http.web import Response, JsonResponse, PdfResponse
+from aiohttp_basicauth_middleware import basic_auth_middleware
 from cryptography import fernet
 from aiohttp import web
-from aiohttp_session import get_session, session_middleware, setup # type: ignore
-from aiohttp_session.cookie_storage import EncryptedCookieStorage # type: ignore
+from aiohttp_session import get_session, session_middleware, setup
+from aiohttp_session.cookie_storage import EncryptedCookieStorage
 from aiohttp.web_middlewares import _Middleware
+
+class BasicAuthMiddleware(AbstractMiddleware):
+    def __init__(self):
+        pass
+
+    def middleware(self):
+        return basic_auth_middleware(('/',) , {'admin' : '888888'})
 
 class SessionMiddleware(AbstractMiddleware):
     def __init__(self):

@@ -8,13 +8,17 @@ from {{ cookiecutter.project_slug }}.http.app import HttpApplication
 class HttpServer(AbstractAsyncioFuture):
     def _init(
         self,
-        application: HttpApplication,
-        host: str = "0.0.0.0",
-        port: int = 8080
+        application,
+        host="0.0.0.0",
+        port=8080,
+        cert=None,
+        key=None
     ):
         self._application = application
         self._host = host
         self._port = port
+        self._cert = cert
+        self._key = key
 
         self._runner = web.AppRunner(self._application())
 
@@ -29,7 +33,12 @@ class HttpServer(AbstractAsyncioFuture):
 
     async def _start_server(self) -> None:
         self._logger.info("Starting HTTP Server")
+
         ssl_context = None
+        if ((self._cert and self._key) is not None):
+            ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+            ssl_context.load_cert_chain(self._cert, self._key)
+            ssl_context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1
 
         try:
             await self._runner.setup()

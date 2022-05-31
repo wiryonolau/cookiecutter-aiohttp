@@ -15,11 +15,11 @@ def app(as_dev=True):
     parser.add_argument("-k",
                         "--key",
                         help="Server Private Key",
-                        default=os.getenv("PRIVATEKEY", ''))
+                        default=os.getenv("PRIVATEKEY", None))
     parser.add_argument("-c",
                         "--cert",
                         help="Server Certificate",
-                        default=os.getenv("CERTIFICATE", ''))
+                        default=os.getenv("CERTIFICATE", None))
     parser.add_argument("--host",
                         help="HTTP listen address",
                         default=os.getenv("HTTPHOST", "0.0.0.0"))
