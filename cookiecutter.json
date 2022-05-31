@@ -5,5 +5,8 @@
     "github_user": "wiryonolau",
     "package_name": "{{ cookiecutter.github_user|lower }}/{{ cookiecutter.project_slug }}",
     "author_name" : "Wiryono Lauw",
-    "author_email": "wiryonolau@gmail.com"
+    "author_email": "wiryonolau@gmail.com",
+    "_copy_without_render": [
+        "*.j2"
+    ]
 }

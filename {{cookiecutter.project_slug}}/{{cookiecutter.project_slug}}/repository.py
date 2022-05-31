@@ -1,1 +1,1 @@
-from hfcomstor.abc import AbstractRepository
+from {{ cookiecutter.project_slug }}.abc import AbstractRepository

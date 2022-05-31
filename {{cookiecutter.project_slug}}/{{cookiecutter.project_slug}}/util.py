@@ -9,7 +9,7 @@ import datetime
 import time
 
 def get_logger(name: str):
-    return logging.getLogger("hfcomstor.{}".format(name))
+    return logging.getLogger("{{ cookiecutter.project_slug }}.{}".format(name))
 
 async def async_shell(
     cmd,

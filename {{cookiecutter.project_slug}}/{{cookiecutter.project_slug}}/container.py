@@ -9,6 +9,11 @@ from {{ cookiecutter.project_slug }}.http import view_helper as http_view_helper
 class Container(containers.DeclarativeContainer):
     config = providers.Configuration()
 
+    db = providers.ThreadSafeSingleton(
+        db.Database,
+        data_path=config.data_path
+    )
+
     http_view_helper = providers.Dict({})
 
     http_application = providers.ThreadSafeSingleton(
@@ -39,10 +44,12 @@ class Container(containers.DeclarativeContainer):
         service.DaemonService,
         daemons=providers.List(
             http_server,
-        )
+        ),
+        async_init=providers.List()
     )
 
     dev_daemon_service = providers.ThreadSafeSingleton(
         service.DaemonService,
-        daemons=providers.List()
+        daemons=providers.List(),
+        async_init=providers.List()
     )

@@ -55,7 +55,7 @@ def app(as_dev=True):
             logging_level = default_logging_level
         logging.getLogger(key).setLevel(logging_level)
 
-    data_path = args.data or os.path.join(os.path.expanduser("~"), ".config", "{{ cookiecutter.project_slug }}")
+    data_path = os.path.join(os.path.expanduser("~"), ".config", "{{ cookiecutter.project_slug }}")
     os.makedirs(data_path, exist_ok=True)
 
     container = Container()

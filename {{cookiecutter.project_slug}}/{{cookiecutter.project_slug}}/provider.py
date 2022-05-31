@@ -1,1 +1,1 @@
-from hfcomstor.abc import AbstractProvider
+from {{ cookiecutter.project_slug }}.abc import AbstractProvider
