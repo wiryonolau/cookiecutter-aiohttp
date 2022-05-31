@@ -1,0 +1,31 @@
+<html>
+{% include 'layout/header.j2' %}
+<body>
+    <nav class="navbar is-fixed-top is-dark">
+        <div class="navbar-brand">
+            <a class="navbar-item" style="margin: 0 10px">
+                <span>{{ layout.title }}</span>
+                <span class="ml-3">v{{ layout.version }}</span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item">
+                </a>
+                <a class="navbar-item">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container is-fluid">
+        <div style="margin:70px 0">
+            {% if layout.page_title is defined %}
+                <div class="is-size-2">{{ layout.page_title }}</div>
+            {% endif %}
+            {{ content | safe }}
+        </div>
+    </div>
+</body>
+</html>

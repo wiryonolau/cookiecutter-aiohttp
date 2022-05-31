@@ -1,0 +1,30 @@
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ layout.title }}</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link href="/lib/@fortawesome/fontawesome-free/css/all.min.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/lib/bulma/css/bulma.min.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/css/bulma.overwrite.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/css/main.css" media="screen" rel="stylesheet" type="text/css" />
+{% if script is defined %}
+    {% for css in script["css"] %}
+        {{ css | safe }}
+    {% endfor %}
+{% endif %}
+
+{% if layout.as_dev %}
+<script type="text/javascript" src="/lib/react/umd/react.development.js"  crossorigin="true"></script>
+<script type="text/javascript" src="/lib/react-dom/umd/react-dom.development.js" crossorigin="true"></script>
+{% else %}
+<script type="text/javascript" src="/lib/react/umd/react.production.min.js"  crossorigin="true"></script>
+<script type="text/javascript" src="/lib/react-dom/umd/react-dom.production.min.js" crossorigin="true"></script>
+{% endif %}
+
+<script type="text/javascript" defer="defer" src="/js/main.js"></script>
+{% if script is defined %}
+    {% for js in script["js"] %}
+        {{ js | safe }}
+    {% endfor %}
+{% endif %}
+</head>

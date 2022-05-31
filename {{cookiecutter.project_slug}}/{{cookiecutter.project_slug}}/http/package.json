@@ -1,0 +1,21 @@
+{
+  "name": "{{ cookiecutter.project_slug }}",
+  "version": "1.0.0",
+  "license": "UNDEFINED",
+  "private": true,
+  "scripts": {
+    "build": "babel ./asset/js/src/ -d asset/js/dist/ --source-maps"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "6.1.1",
+    "bulma": "^0.9.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-react": "^7.16.7",
+    "babel-preset-minify": "^0.5.1"
+  }
+}

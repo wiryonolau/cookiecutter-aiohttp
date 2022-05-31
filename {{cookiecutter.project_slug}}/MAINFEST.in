@@ -1,0 +1,5 @@
+include {{ cookiecutter.project_slug }}/VERSION
+recursive-include {{ cookiecutter.project_slug }}/config *
+recursive-include {{ cookiecutter.project_slug }}/http/asset *
+recursive-include {{ cookiecutter.project_slug }}/http/node_modules *
+recursive-include {{ cookiecutter.project_slug }}/http/view *
