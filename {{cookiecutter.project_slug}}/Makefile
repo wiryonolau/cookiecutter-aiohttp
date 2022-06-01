@@ -49,3 +49,8 @@ yarn:
 		-e NODE_ENV=development \
 		--user $$(id -u):$$(id -g) \
 	node:lts-slim yarn $(filter-out $@,$(MAKECMDGOALS))
+docker-build:
+	$(MAKE) -s yarn-build
+	/usr/bin/env pip3 install pip-tools
+	pip-compile -v
+	docker build -t asia.gcr.io/harvestindo/{{ cookiecutter.project_slug }} -f Dockerfile .

@@ -25,7 +25,10 @@ class Container(containers.DeclarativeContainer):
                 as_dev=config.as_dev,
                 version=config.version
             ),
-            providers.ThreadSafeSingleton(http_middleware.BasicAuthMiddleware),
+            providers.ThreadSafeSingleton(
+                http_middleware.BasicAuthMiddleware,
+                auth=config.http.auth
+            ),
             providers.ThreadSafeSingleton(http_middleware.SessionMiddleware),
             providers.ThreadSafeSingleton(http_middleware.ErrorMiddleware),
         ),

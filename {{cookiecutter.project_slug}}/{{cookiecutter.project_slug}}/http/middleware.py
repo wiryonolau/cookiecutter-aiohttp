@@ -15,15 +15,14 @@ from aiohttp_session.cookie_storage import EncryptedCookieStorage
 from aiohttp.web_middlewares import _Middleware
 
 class BasicAuthMiddleware(AbstractMiddleware):
-    def __init__(self):
-        pass
+    def _init(self, auth={}):
+        self._auth = auth
 
     def middleware(self):
-        return basic_auth_middleware(('/',) , {'admin' : '888888'})
+        return basic_auth_middleware(('/',) , self._auth)
 
 class SessionMiddleware(AbstractMiddleware):
-    def __init__(self):
-        super().__init__()
+    def _init(self):
         fernet_key = fernet.Fernet.generate_key()
         secret_key = base64.urlsafe_b64decode(fernet_key)
         self._cookie_storage = EncryptedCookieStorage(
@@ -33,10 +32,6 @@ class SessionMiddleware(AbstractMiddleware):
 
     def middleware(self):
         return session_middleware(self._cookie_storage)
-
-class NavigationMiddleware(AbstractMiddleware):
-    def __init__(self):
-        super().__init__()
 
 class ErrorMiddleware(AbstractMiddleware):
     def middleware(self):
@@ -84,8 +79,7 @@ class ErrorMiddleware(AbstractMiddleware):
 
 
 class LayoutMiddleware(AbstractMiddleware):
-    def __init__(self, view_helper={}, as_dev=False, version=None):
-        super().__init__()
+    def _init(self, view_helper={}, as_dev=False, version=None):
         self._view_helper = view_helper
         self._as_dev = as_dev
         self._version = version

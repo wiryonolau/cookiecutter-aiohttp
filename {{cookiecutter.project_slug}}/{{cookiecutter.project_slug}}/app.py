@@ -4,7 +4,7 @@ import sys
 import os
 from {{ cookiecutter.project_slug }} import  __version__
 from {{ cookiecutter.project_slug }}.container import Container
-from {{ cookiecutter.project_slug }}.util import get_logger
+from {{ cookiecutter.project_slug }}.util import get_logger, get_env, get_docker_secret
 
 from pprint import pprint
 
@@ -14,12 +14,15 @@ def app(as_dev=True):
     parser = argparse.ArgumentParser()
     parser.add_argument("-k",
                         "--key",
-                        help="Server Private Key",
-                        default=os.getenv("PRIVATEKEY", None))
+                        help="Server private key file",
+                        default=get_docker_secret("PRIVATEKEY_FILE", None, True))
     parser.add_argument("-c",
                         "--cert",
-                        help="Server Certificate",
-                        default=os.getenv("CERTIFICATE", None))
+                        help="Server certificate file",
+                        default=get_docker_secret("CERTIFICATE_FILE", None, True))
+    parser.add_argument("--auth",
+                        help="http basic auth file",
+                        default=get_docker_secret("BASIC_AUTH_FILE", None, True))
     parser.add_argument("--host",
                         help="HTTP listen address",
                         default=os.getenv("HTTPHOST", "0.0.0.0"))
@@ -65,8 +68,9 @@ def app(as_dev=True):
         "http" : {
             "host" : str(args.host),
             "port" : int(args.port),
-            "cert" : str(args.cert),
-            "key" : str(args.key)
+            "cert" : args.cert,
+            "key" : args.key,
+            "auth" : args.auth or {"admin" : "888888"}
         },
         "debug" : True if as_dev else args.debug,
         "as_dev" : as_dev,

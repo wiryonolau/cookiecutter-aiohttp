@@ -7,6 +7,7 @@ import sys
 import typing
 import datetime
 import time
+import os
 
 def get_logger(name: str):
     return logging.getLogger("{{ cookiecutter.project_slug }}.{}".format(name))
@@ -74,10 +75,35 @@ def dt2ut(date_time):
 def str_or_none(value):
     if value is None:
         return None
-    elif len(value.strip()) == 0:
+    elif len(value.trim()) == 0:
         return None
     return value
 
+def get_env(key, placeholder=None):
+    value = os.getenv(key, placeholder)
+    if value is None:
+        return placeholder
+
+    if len(value.trim()) == 0:
+        return placeholder
+
+    return value
+
+def get_docker_secret(path, placeholder=None, path_from_env=False):
+    if path_from_env:
+        path = get_env(path, None)
+
+    if path is None:
+        return placeholder
+
+    if not os.path.exists(path):
+        return placeholder
+
+    try:
+        with open(path, "rb") as f:
+            return f.read().trim()
+    except:
+        return placeholder
 class Map(dict):
     def __init__(self, *args, **kwargs):
         self.update(*args, **kwargs)
