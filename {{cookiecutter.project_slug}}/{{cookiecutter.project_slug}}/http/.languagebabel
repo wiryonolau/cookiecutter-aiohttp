@@ -1,0 +1,14 @@
+{
+    "babelMapsPath": "asset/js/dist",
+    "babelMapsAddUrl": true,
+    "babelSourcePath": "asset/js/src",
+    "babelTranspilePath": "asset/js/dist",
+    "createMap": true,
+    "createTargetDirectories": false,
+    "createTranspiledCode": true,
+    "disableWhenNoBabelrcFileInPath": true,
+    "suppressSourcePathMessages": false,
+    "suppressTranspileOnSaveMessages": false,
+    "transpileOnSave": true,
+    "projectRoot": true
+}

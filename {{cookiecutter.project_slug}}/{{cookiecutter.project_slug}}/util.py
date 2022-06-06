@@ -75,7 +75,7 @@ def dt2ut(date_time):
 def str_or_none(value):
     if value is None:
         return None
-    elif len(value.trim()) == 0:
+    elif len(str(value).strip()) == 0:
         return None
     return value
 
@@ -84,7 +84,7 @@ def get_env(key, placeholder=None):
     if value is None:
         return placeholder
 
-    if len(value.trim()) == 0:
+    if len(str(value).strip()) == 0:
         return placeholder
 
     return value

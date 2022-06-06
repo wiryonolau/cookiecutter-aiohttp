@@ -1,0 +1,15 @@
+{
+    "comments" : false,
+    "sourceMaps": true,
+    "only": [
+        "./asset/js/src"
+    ],
+    "presets": [
+        "@babel/preset-react",
+        ["minify", {
+            "mangle" : true,
+            "builtIns": false,
+            "keepClassName" : true
+        }]
+    ]
+}
