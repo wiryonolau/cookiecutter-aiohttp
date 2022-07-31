@@ -18,7 +18,7 @@
     "terminal.integrated.profiles.linux": {
         "VirtualEnvironment": {
             "path": "bash",
-            "args": ["--rcfile", "${workspaceFolder}/.env/bin/activate"]
+            "args": ["--rcfile", "${workspaceFolder}/.vscode/activate"]
         }
     },
     "terminal.integrated.persistentSessionReviveProcess": "never",
