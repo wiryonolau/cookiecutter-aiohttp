@@ -1,6 +1,6 @@
 from dependency_injector import containers, providers
 
-from {{ cookiecutter.project_slug }} import daemon, db, provider, service, repository
+from {{ cookiecutter.project_slug }} import daemon, database, provider, service, repository
 from {{ cookiecutter.project_slug }}.http import action as http_action
 from {{ cookiecutter.project_slug }}.http import app as http_app
 from {{ cookiecutter.project_slug }}.http import middleware as http_middleware
@@ -10,7 +10,7 @@ class Container(containers.DeclarativeContainer):
     config = providers.Configuration()
 
     db = providers.ThreadSafeSingleton(
-        db.Database,
+        database.Database,
         data_path=config.data_path
     )
 

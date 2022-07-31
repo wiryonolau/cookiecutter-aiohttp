@@ -4,9 +4,7 @@
     "database_name": "{{ cookiecutter.project_name|lower|replace(' ', '_') }}",
     "github_user": "wiryonolau",
     "package_name": "{{ cookiecutter.github_user|lower }}/{{ cookiecutter.project_slug }}",
-    "author_name" : "Wiryono Lauw",
+    "author_name": "Wiryono Lauw",
     "author_email": "wiryonolau@gmail.com",
-    "_copy_without_render": [
-        "*.j2"
-    ]
+    "_copy_without_render": ["*.j2", "*.jinja"]
 }

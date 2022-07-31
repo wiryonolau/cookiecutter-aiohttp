@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 git init
-virtualenv -p python3.9 "$(pwd)/${@:-.env}"
+virtualenv -p python3.9 .env || true
 make yarn-install
-/bin/bash -c "source $(pwd)/.env/bin/activate; make install"
+source .env/bin/activate

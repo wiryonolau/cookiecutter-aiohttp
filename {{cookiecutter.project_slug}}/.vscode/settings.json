@@ -1,0 +1,66 @@
+{
+    "editor.acceptSuggestionOnCommitCharacter": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.formatOnSave": true,
+    "editor.hover.enabled": true,
+    "editor.insertSpaces": true,
+    "editor.minimap.enabled": true,
+    "editor.parameterHints.enabled": true,
+    "editor.quickSuggestionsDelay": 10,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.tabSize": 4,
+    "editor.wordBasedSuggestions": false,
+    "prettier.enableDebugLogs": true,
+    "prettier.jsxSingleQuote": false,
+    "prettier.singleQuote": false,
+    "prettier.tabWidth": 4,
+    "terminal.integrated.profiles.linux": {
+        "VirtualEnvironment": {
+            "path": "bash",
+            "args": [
+                "-c",
+                "bash --init-file <(cat ${env:HOME}/.profile ${cwd}/.env/bin/activate 2> /dev/null)"
+            ]
+        }
+    },
+    "terminal.integrated.persistentSessionReviveProcess": "never",
+    "terminal.integrated.enablePersistentSessions": false,
+    "terminal.integrated.defaultProfile.linux": "VirtualEnvironment",
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "keep",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    }
+}
