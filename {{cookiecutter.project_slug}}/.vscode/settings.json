@@ -18,10 +18,7 @@
     "terminal.integrated.profiles.linux": {
         "VirtualEnvironment": {
             "path": "bash",
-            "args": [
-                "-c",
-                "bash --init-file <(cat ${env:HOME}/.profile ${cwd}/.env/bin/activate 2> /dev/null)"
-            ]
+            "args": ["--rcfile", "${workspaceFolder}/.env/bin/activate"]
         }
     },
     "terminal.integrated.persistentSessionReviveProcess": "never",
